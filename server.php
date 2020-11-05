@@ -151,6 +151,15 @@ foreach ($valetConfig['paths'] as $path) {
         $directory = $path.'/'.$domain.'/'.$siteName;
         $subDomain = strstr($siteName, ".$domain", true);
 
+//         print_r([
+//             'valetSitePath' => $valetSitePath == null,
+//             'path' => $path,
+//             'domain' => $domain,
+//             'siteName' => $siteName,
+//             'directory' => $directory,
+//             'subDomain' => $subDomain,
+//         ]);
+
         if ($subDomain && is_dir($directory) || is_dir($directory = $path.'/'.$domain.'/'.$subDomain)) {
             $valetSitePath = $directory;
             break;
