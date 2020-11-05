@@ -118,6 +118,31 @@ foreach ($valetConfig['paths'] as $path) {
         break;
     }
 
+    /**
+     * Enable sub-domain support.
+     *
+     * This ability allows for varied directory structures, equally supporting
+     * the "grouping" of site folders.
+     *
+     * We let the user decide whether a site's folder name should include the parent domain.
+     *
+     * In the following example, two common organizational patterns are shown:
+     *
+     * | Folder                           | URL                          |
+     * | -------------------------------- | ---------------------------- |
+     * | ~/Sites/example/project1         | http://project1.example.test |
+     * | ~/Sites/company/project2.company | http://project2.company.test |
+     *
+     * In both instances it's necessary to park the parent folder to resolve the path:
+     *
+     * `$ valet park ~/Sites/example`
+     *
+     * Deeply-nested sub-domains of grouped sites are allowed too, so the following is completely valid:
+     *
+     * `http://one.two.three.four.five.example.test`
+     *
+     * Note: If the path to a grouped domain is not parked, any sub-domains will be result in a 404 error.
+     */
     if (is_null($valetSitePath)) {
         if (! in_array($path.'/'.$domain, $valetConfig['paths'])) {
             // continue;
